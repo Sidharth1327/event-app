@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { ClerkProvider} from '@clerk/nextjs'
 import "./globals.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ['400','500','600', '700'], variable: '--font-poppins',});
 
 export const metadata: Metadata = {
-  title: "UrEvents",
-  description: "All in all app for event management",
+  title: "Eventara - Where Moments Come Alive",
+  description: "A platform that transforms ordinary events into extraordinary experiences.",
   icons:{
     icon:'/assets/images/logo.svg'
   }
@@ -18,8 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={poppins.variable}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={poppins.variable}>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>  
   );
 }
